@@ -1,0 +1,172 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>io.confluent</groupId>
+        <artifactId>common</artifactId>
+        <version>5.3.0</version>
+    </parent>
+
+    <groupId>com.github.mosen</groupId>
+    <artifactId>kafka-connect-azurestorage</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>kafka-connect-azurestorage</name>
+    <description>A Kafka Connect Connector for Azure Storage Accounts</description>
+
+    <scm>
+        <connection>scm:git:git://github.com/mosen/kafka-connect-azurestorage.git</connection>
+        <developerConnection>scm:git:git@github.com:mosen/kafka-connect-azurestorage.git</developerConnection>
+        <url>https://github.com/mosen/kafka-connect-azurestorage</url>
+        <tag>HEAD</tag>
+    </scm>
+    <issueManagement>
+        <system>github</system>
+        <url>https://github.com/mosen/kafka-connect-azurestorage/issues</url>
+    </issueManagement>
+
+    <properties>
+        <azurestorage.version>8.3.0</azurestorage.version>
+        <kafka.connect.maven.plugin.version>0.11.1</kafka.connect.maven.plugin.version>
+        <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
+        <junit.version>4.12</junit.version>
+    </properties>
+
+    <repositories>
+        <repository>
+            <id>confluent</id>
+            <name>Confluent</name>
+            <url>${confluent.maven.repo}</url>
+        </repository>
+    </repositories>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>connect-api</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.kafka</groupId>
+            <artifactId>connect-json</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage -->
+        <dependency>
+            <groupId>com.microsoft.azure</groupId>
+            <artifactId>azure-storage</artifactId>
+            <version>${azurestorage.version}</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.github.jcustenborder.kafka.connect/connect-utils -->
+        <dependency>
+            <groupId>com.github.jcustenborder.kafka.connect</groupId>
+            <artifactId>connect-utils</artifactId>
+            <version>0.4.155</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>io.confluent</groupId>
+                <version>${kafka.connect.maven.plugin.version}</version>
+                <artifactId>kafka-connect-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>kafka-connect</goal>
+                        </goals>
+                        <configuration>
+                            <title>Kafka Connect Azure Storage</title>
+                            <documentationUrl></documentationUrl>
+                            <description>
+                                The Kafka Connect Azure Storage source allows you to use an Azure Storage Table as a
+                                source for Kafka messages.
+                            </description>
+                            <logo>logos/elasticsearch.jpg</logo>
+
+                            <supportProviderName>Mosen</supportProviderName>
+                            <supportSummary>File an issue</supportSummary>
+                            <supportUrl>https://github.com/mosen/kafka-connect-azurestorage</supportUrl>
+                            <supportLogo>logos/mosen.png</supportLogo>
+
+                            <ownerUsername>mosen</ownerUsername>
+                            <ownerType>individual</ownerType>
+                            <ownerName>Mosen</ownerName>
+                            <ownerUrl>https://github.com/mosen/</ownerUrl>
+                            <ownerLogo>logos/mosen.png</ownerLogo>
+
+                            <dockerNamespace>mosen</dockerNamespace>
+                            <dockerName>cp-kafka-connect</dockerName>
+                            <dockerTag>${project.version}</dockerTag>
+
+                            <componentTypes>
+                                <componentType>sink</componentType>
+                            </componentTypes>
+
+                            <tags>
+                                <tag>Azure</tag>
+                                <tag>storage</tag>
+                                <tag>table</tag>
+                            </tags>
+
+                            <requirements>
+                                <requirement>Azure Storage Account</requirement>
+                            </requirements>
+
+                            <deliveryGuarantee>
+                                <deliveryGuarantee>exactlyOnce</deliveryGuarantee>
+                            </deliveryGuarantee>
+
+                            <confluentControlCenterIntegration>false</confluentControlCenterIntegration>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <inherited>true</inherited>
+                <configuration>
+                    <compilerArgs>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <arg>-Xlint:all</arg>
+                        <arg>-Werror</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-checkstyle-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+            </resource>
+        </resources>
+    </build>
+
+
+</project>
