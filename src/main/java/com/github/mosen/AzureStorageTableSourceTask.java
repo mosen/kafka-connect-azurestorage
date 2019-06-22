@@ -7,7 +7,6 @@ import org.apache.kafka.connect.data.Struct;
 import org.apache.kafka.connect.errors.ConnectException;
 import org.apache.kafka.connect.source.SourceRecord;
 import org.apache.kafka.connect.source.SourceTask;
-import com.github.jcustenborder.kafka.connect.utils.VersionUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.microsoft.azure.storage.*;
@@ -25,9 +24,13 @@ public class AzureStorageTableSourceTask extends SourceTask {
  */
   static final Logger log = LoggerFactory.getLogger(AzureStorageTableSourceTask.class);
 
+  private String tableName;
+  private String partitionKey;
+
+
   @Override
   public String version() {
-    return VersionUtil.version(this.getClass());
+    return "1.0.0";
   }
 
   @Override
@@ -37,8 +40,7 @@ public class AzureStorageTableSourceTask extends SourceTask {
 
   @Override
   public List<SourceRecord> poll() throws InterruptedException {
-    //TODO: Create SourceRecord objects that will be sent the kafka cluster.
-    throw new UnsupportedOperationException("This has not been implemented.");
+    SourceRecord sr = new SourceRecord();
   }
 
   @Override

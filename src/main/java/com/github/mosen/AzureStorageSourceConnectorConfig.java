@@ -15,7 +15,7 @@ public class AzureStorageSourceConnectorConfig extends AbstractConfig {
   private static final String AZURE_CONNECTION_STRING_DOC = "The Azure storage account connection string as shown in " +
           "the portal";
 
-  public static final String AZURE_STORAGE_TYPE_CONFIG = "azure.storagetype";
+  public static final String AZURE_STORAGE_TYPE_CONFIG = "azure.storage.type";
   private static final String AZURE_STORAGE_TYPE_DOC = "The type of Azure storage being read. Only `table` is " +
           "supported right now.";
 

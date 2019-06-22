@@ -3,11 +3,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>io.confluent</groupId>
-        <artifactId>common</artifactId>
-        <version>5.3.0-SNAPSHOT</version>
-    </parent>
+<!--    <parent>-->
+<!--        <groupId>io.confluent</groupId>-->
+<!--        <artifactId>common</artifactId>-->
+<!--        <version>5.3.0</version>-->
+<!--    </parent>-->
 
     <groupId>com.github.mosen</groupId>
     <artifactId>kafka-connect-azurestorage</artifactId>
@@ -16,6 +16,7 @@
 
     <name>kafka-connect-azurestorage</name>
     <description>A Kafka Connect Connector for Azure Storage Accounts</description>
+
 
     <scm>
         <connection>scm:git:git://github.com/mosen/kafka-connect-azurestorage.git</connection>
@@ -33,6 +34,8 @@
         <kafka.connect.maven.plugin.version>0.11.1</kafka.connect.maven.plugin.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
         <junit.version>4.12</junit.version>
+        <kafka.version>2.2.1</kafka.version>
+        <dist-archive-name>${project.artifactId}-${project.version}.zip</dist-archive-name>
     </properties>
 
     <repositories>
@@ -47,11 +50,13 @@
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>connect-api</artifactId>
+            <version>${kafka.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.apache.kafka</groupId>
             <artifactId>connect-json</artifactId>
+            <version>${kafka.version}</version>
             <scope>provided</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.microsoft.azure/azure-storage -->
