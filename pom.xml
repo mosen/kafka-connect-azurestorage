@@ -33,7 +33,7 @@
         <azurestorage.version>8.3.0</azurestorage.version>
         <kafka.connect.maven.plugin.version>0.11.1</kafka.connect.maven.plugin.version>
         <confluent.maven.repo>http://packages.confluent.io/maven/</confluent.maven.repo>
-        <junit.version>4.12</junit.version>
+        <junit.version>4.13.1</junit.version>
         <kafka.version>2.2.1</kafka.version>
         <dist-archive-name>${project.artifactId}-${project.version}.zip</dist-archive-name>
     </properties>
